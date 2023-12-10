@@ -126,6 +126,13 @@ const MediaPlayer = () => {
     )}:${String(seconds).padStart(2, '0')}`;
   };
 
+  const randomTrack = () => {
+    const randomIndex = Math.floor(Math.random() * tracks.length);
+    setSelectedTrackCFurl(tracks[randomIndex]?.CFurl);
+    setSelectedTrackTitle(tracks[randomIndex]?.title);
+    audioRef.current.pause();
+  };
+
   return (
     <div className="bg-blue-800 justify-center max-h-full flex flex-col items-center">
       {/* {tracks.map((track) => {
@@ -134,7 +141,10 @@ const MediaPlayer = () => {
         </div>;
       })} */}
       <div className="w-full flex justify-center items-center space-x-4">
-        <FaRandom className="text-white hover:text-blue-500 cursor-pointer transition duration-300 transform hover:scale-110" />
+        <FaRandom
+          onClick={randomTrack}
+          className="text-white hover:text-blue-500 cursor-pointer transition duration-300 transform hover:scale-110"
+        />
         <IoPlaySkipBackSharp
           size={20}
           onClick={handlePrevious}
